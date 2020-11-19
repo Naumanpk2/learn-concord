@@ -1,3 +1,6 @@
+configuration:
+  arguments:
+    name: "Learn Concord"
 flows:
   default:
-    - log: "Hello Concord"
+    - log: "Project Name ${name}"
