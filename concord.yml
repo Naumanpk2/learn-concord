@@ -24,7 +24,7 @@ flows:
     - if: ${response.success}
       then:
       - log: "Response received: ${response.content}"
-      - log "Checking for token type & token"
-      - log " --- "
-      - log "Token Type: ${response.content.token_type}"
-      - log "Token: ${response.content.access_token}"
+      - log: "Checking for token type & token"
+      - log: " --- "
+      - log: "Token Type: ${response.content.token_type}"
+      - log: "Token: ${response.content.access_token}"
