@@ -42,4 +42,3 @@ flows:
       - log: "Response received: ${response.content}"
       else:
       - log: "Some error occured"
-		
