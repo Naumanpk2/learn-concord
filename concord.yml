@@ -10,12 +10,12 @@ flows:
         - log: "it's clearly non-zero"
       else:
         - log: "zero or less"
-    - task: http
-      in:
-        method: GET
-        url: "http://www.google.com"
-        response: string
-      out: response
-      #- if: ${response.success}
-      #  then:
-      #  - log: "Response received: ${response.content}"
+    #- task: http
+    #  in:
+    #    method: GET
+    #    url: "http://www.google.com"
+    #    response: string
+    #  out: response
+    #  #- if: ${response.success}
+    #  #  then:
+    #  - log: "Response received: ${response.content}"
