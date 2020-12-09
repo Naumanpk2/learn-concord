@@ -1,6 +1,12 @@
 configuration:
   arguments:
     name: "Learn Concord"
+    myVar: 3
 flows:
   default:
     - log: "Project Name ${name}"
+    - if: ${myVar > 0}
+    then:
+      - log: "it's clearly non-zero"
+    else:
+      - log: "zero or less"
