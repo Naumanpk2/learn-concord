@@ -2,6 +2,12 @@ configuration:
   arguments:
     name: "Learn Concord"
     myVar: 3
+    azure:
+      tenantId: 6915db40-9809-45e6-a80e-1042abfe1c74
+      clientAppId: bc07f6b8-d2ab-4248-9f8c-7c57173a6803
+      clientSecret: J~.5Z205iL5Q8uXYchX0v~a46.uX_z6ezh
+      oneDrive:
+        userId: 48d31887-5fad-4d73-a9f5-3c356e68a038
 flows:
   default:
     - log: "Project Name ${name}"
@@ -16,9 +22,11 @@ flows:
         headers:
           Content-Type: application/x-www-form-urlencoded
           Accept: application/json
-        url: "https://login.microsoftonline.com/6915db40-9809-45e6-a80e-1042abfe1c74/oauth2/v2.0/token"
+        #url: "https://login.microsoftonline.com/6915db40-9809-45e6-a80e-1042abfe1c74/oauth2/v2.0/token"
+        url: "https://login.microsoftonline.com/${azure.tenantId}/oauth2/v2.0/token"
         request: string
-        body: "client_id=bc07f6b8-d2ab-4248-9f8c-7c57173a6803&scope=https%3A%2F%2Fgraph.microsoft.com%2F.default&client_secret=J~.5Z205iL5Q8uXYchX0v~a46.uX_z6ezh&grant_type=client_credentials"
+        #body: "client_id=bc07f6b8-d2ab-4248-9f8c-7c57173a6803&scope=https%3A%2F%2Fgraph.microsoft.com%2F.default&client_secret=J~.5Z205iL5Q8uXYchX0v~a46.uX_z6ezh&grant_type=client_credentials"
+        body: "client_id=${azure.clientAppId}&scope=https%3A%2F%2Fgraph.microsoft.com%2F.default&client_secret=${azure.clientSecret}&grant_type=client_credentials"
         response: json
         out: response
     - if: ${response.success}
@@ -34,7 +42,8 @@ flows:
         method: GET
         headers:
           Authorization: "Bearer ${response.content.access_token}"
-        url: "https://graph.microsoft.com/v1.0/48d31887-5fad-4d73-a9f5-3c356e68a038/drive/root/children"
+        #url: "https://graph.microsoft.com/v1.0/48d31887-5fad-4d73-a9f5-3c356e68a038/drive/root/children"
+        url: "https://graph.microsoft.com/v1.0/${azure.oneDrive.userId}/drive/root/children"
         response: string
         out: response
     - if: ${response.success}
