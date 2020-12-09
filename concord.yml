@@ -16,6 +16,6 @@ flows:
         url: "http://www.google.com"
         response: string
       out: response
-      - if: ${response.success}
-        then:
-        - log: "Response received: ${response.content}"
+      #- if: ${response.success}
+      #  then:
+      #  - log: "Response received: ${response.content}"
