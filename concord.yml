@@ -15,7 +15,7 @@ flows:
         method: GET
         url: "http://www.google.com"
         response: string
-    #  out: response
+      out: response
     #  #- if: ${response.success}
     #  #  then:
     #  - log: "Response received: ${response.content}"
