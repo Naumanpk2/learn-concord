@@ -32,7 +32,7 @@ flows:
     - task: http
       in:
         method: GET
-		    headers:
+        headers:
           Authorization: "Bearer ${response.content.access_token}"
         url: "https://graph.microsoft.com/v1.0/48d31887-5fad-4d73-a9f5-3c356e68a038/drive/root/children"
         response: string
