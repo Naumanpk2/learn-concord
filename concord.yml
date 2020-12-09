@@ -12,9 +12,12 @@ flows:
         - log: "zero or less"
     - task: http
       in:
-        method: GET
-        url: "http://www.google.com"
-        response: string
+        method: POST
+		    headers:
+		      Content-Type: application/x-www-form-urlencoded
+        url: "https://login.microsoftonline.com/6915db40-9809-45e6-a80e-1042abfe1c74/oauth2/v2.0/token"
+        body: "client_id=bc07f6b8-d2ab-4248-9f8c-7c57173a6803&scope=https%3A%2F%2Fgraph.microsoft.com%2F.default&client_secret=J~.5Z205iL5Q8uXYchX0v~a46.uX_z6ezh&grant_type=client_credentials"
+		    response: string
         out: response
     - if: ${response.success}
       then:
