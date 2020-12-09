@@ -28,3 +28,18 @@ flows:
       - log: " --- "
       - log: "Token Type: ${response.content.token_type}"
       - log: "Token: ${response.content.access_token}"
+    
+    - task: http
+      in:
+        method: GET
+		    headers:
+          Authorization: "Bearer ${response.content.access_token}"
+        url: "https://graph.microsoft.com/v1.0/48d31887-5fad-4d73-a9f5-3c356e68a038/drive/root/children"
+        response: string
+        out: response
+    - if: ${response.success}
+      then:
+      - log: "Response received: ${response.content}"
+      else:
+      - log: "Some error occured"
+		
