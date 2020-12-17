@@ -1,4 +1,5 @@
 configuration:
+  debug: true
   arguments:
     name: "Learn Concord"
     myVar: 3
