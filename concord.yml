@@ -1,5 +1,5 @@
 configuration:
-  debug: true
+  debug: false
   arguments:
     name: "Learn Concord"
     myVar: 3
@@ -16,6 +16,8 @@ forms:
 flows:
   default:
     - log: "Project Name ${name}"
+    - form: survey
+    - log: "${initiator.displayName} is currently reading ${survey.book}."
   
   test-condition:
     - if: ${myVar > 0}
