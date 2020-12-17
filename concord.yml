@@ -9,15 +9,23 @@ configuration:
       clientSecret: J~.5Z205iL5Q8uXYchX0v~a46.uX_z6ezh
       oneDrive:
         userId: 48d31887-5fad-4d73-a9f5-3c356e68a038
+forms:
+  survey:
+  - book: { label: "What book are you currently reading?", type: "string" }
+  
 flows:
   default:
     - log: "Project Name ${name}"
+  
+  test-condition:
     - if: ${myVar > 0}
       then:
         - log: "it's clearly non-zero"
       else:
         - log: "zero or less"
-    - task: http
+  
+  onedrive-access:
+  - task: http
       in:
         method: POST
         headers:
